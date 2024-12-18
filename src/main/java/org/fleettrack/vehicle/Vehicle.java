@@ -26,7 +26,8 @@ public class Vehicle {
     private int currentKm;
     private int capacity;
     private String acquisitionDate;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private VehicleStatus status;
 
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Driver> driver;
