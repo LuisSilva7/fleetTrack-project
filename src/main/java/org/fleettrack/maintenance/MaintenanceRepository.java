@@ -1,4 +1,6 @@
 package org.fleettrack.maintenance;
 
-public class MaintenanceRepository {
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+
+public interface MaintenanceRepository extends PanacheRepository<Maintenance> {
 }

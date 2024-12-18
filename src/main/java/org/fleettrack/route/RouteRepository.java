@@ -1,4 +1,6 @@
 package org.fleettrack.route;
 
-public class RouteRepository {
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+
+public interface RouteRepository extends PanacheRepository<Route> {
 }

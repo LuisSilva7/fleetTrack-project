@@ -1,4 +1,6 @@
 package org.fleettrack.vehicle;
 
-public class VehicleRepository {
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+
+public interface VehicleRepository extends PanacheRepository<Vehicle> {
 }

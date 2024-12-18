@@ -1,4 +1,6 @@
 package org.fleettrack.driver;
 
-public class DriverRepository {
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+
+public interface DriverRepository extends PanacheRepository<Driver> {
 }
