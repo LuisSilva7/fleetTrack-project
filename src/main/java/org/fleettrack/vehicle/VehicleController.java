@@ -91,5 +91,4 @@ public class VehicleController {
                 "Vehicle with ID: " + vehicleId + " deleted successfully!",
                 null)).build();
     }
-
 }
