@@ -14,6 +14,9 @@ public class RouteRepository implements PanacheRepository<Route> {
     }
 
     public List<Route> findRoutesByVehicleId(Long vehicleId) {
-        return find("vehicles.id", vehicleId).list();
+        return getEntityManager()
+                .createQuery("SELECT r FROM Route r JOIN r.vehicles v WHERE v.id = :vehicleId", Route.class)
+                .setParameter("vehicleId", vehicleId)
+                .getResultList();
     }
 }
