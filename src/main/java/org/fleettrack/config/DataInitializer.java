@@ -34,6 +34,56 @@ public class DataInitializer {
         if (vehicleRepository.count() == 0) {
             LOGGER.info("Inserting initial data into the database...");
 
+            List<Route> routes = List.of(
+                    Route.builder()
+                            .originStreet("123 Main St")
+                            .originCity("Springfield")
+                            .destinationStreet("456 Elm St")
+                            .destinationCity("Shelbyville")
+                            .distance(50.5)
+                            .estimatedTime("1h 15m")
+                            .tolls(false)
+                            .build(),
+                    Route.builder()
+                            .originStreet("789 Oak St")
+                            .originCity("Capital City")
+                            .destinationStreet("321 Maple St")
+                            .destinationCity("Ogdenville")
+                            .distance(120.0)
+                            .estimatedTime("2h 30m")
+                            .tolls(true)
+                            .build(),
+                    Route.builder()
+                            .originStreet("555 Birch Ave")
+                            .originCity("North Haverbrook")
+                            .destinationStreet("888 Pine Rd")
+                            .destinationCity("Brockway")
+                            .distance(75.3)
+                            .estimatedTime("1h 45m")
+                            .tolls(true)
+                            .build(),
+                    Route.builder()
+                            .originStreet("222 Cedar Blvd")
+                            .originCity("Springfield")
+                            .destinationStreet("999 Willow Ln")
+                            .destinationCity("Ogdenville")
+                            .distance(30.0)
+                            .estimatedTime("0h 50m")
+                            .tolls(false)
+                            .build(),
+                    Route.builder()
+                            .originStreet("100 Poplar St")
+                            .originCity("Brockway")
+                            .destinationStreet("400 Ash Dr")
+                            .destinationCity("Capital City")
+                            .distance(200.5)
+                            .estimatedTime("3h 15m")
+                            .tolls(true)
+                            .build()
+            );
+
+            routeRepository.persist(routes);
+
             List<Vehicle> vehicles = List.of(
                     Vehicle.builder()
                             .plate("13AS91")
@@ -43,6 +93,7 @@ public class DataInitializer {
                             .capacity(5)
                             .acquisitionDate("2022-05-15")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(0, 2))
                             .build(),
                     Vehicle.builder()
                             .plate("10LM22")
@@ -52,6 +103,7 @@ public class DataInitializer {
                             .capacity(5)
                             .acquisitionDate("2020-03-10")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(3, 4))
                             .build(),
                     Vehicle.builder()
                             .plate("19CC02")
@@ -61,6 +113,7 @@ public class DataInitializer {
                             .capacity(5)
                             .acquisitionDate("2023-01-20")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(3, 4))
                             .build(),
                     Vehicle.builder()
                             .plate("75ZX34")
@@ -70,6 +123,7 @@ public class DataInitializer {
                             .capacity(5)
                             .acquisitionDate("2021-08-11")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(0, 1))
                             .build(),
                     Vehicle.builder()
                             .plate("42KL77")
@@ -79,6 +133,7 @@ public class DataInitializer {
                             .capacity(5)
                             .acquisitionDate("2019-07-23")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(3, 4))
                             .build(),
                     Vehicle.builder()
                             .plate("33AA99")
@@ -88,6 +143,7 @@ public class DataInitializer {
                             .capacity(5)
                             .acquisitionDate("2023-02-14")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(3, 4))
                             .build(),
                     Vehicle.builder()
                             .plate("60PY10")
@@ -97,6 +153,7 @@ public class DataInitializer {
                             .capacity(5)
                             .acquisitionDate("2022-04-09")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(3, 5))
                             .build(),
                     Vehicle.builder()
                             .plate("89TR12")
@@ -106,6 +163,7 @@ public class DataInitializer {
                             .capacity(5)
                             .acquisitionDate("2018-09-30")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(4, 5))
                             .build(),
                     Vehicle.builder()
                             .plate("51VU88")
@@ -115,6 +173,7 @@ public class DataInitializer {
                             .capacity(5)
                             .acquisitionDate("2017-06-12")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(1, 5))
                             .build(),
                     Vehicle.builder()
                             .plate("18BN44")
@@ -124,6 +183,7 @@ public class DataInitializer {
                             .capacity(5)
                             .acquisitionDate("2021-12-05")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(1, 4))
                             .build(),
                     Vehicle.builder()
                             .plate("45GH12")
@@ -133,6 +193,7 @@ public class DataInitializer {
                             .capacity(12)
                             .acquisitionDate("2022-08-15")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(3, 5))
                             .build(),
                     Vehicle.builder()
                             .plate("67RT89")
@@ -142,6 +203,7 @@ public class DataInitializer {
                             .capacity(10)
                             .acquisitionDate("2021-04-22")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(3, 4))
                             .build(),
                     Vehicle.builder()
                             .plate("34YU56")
@@ -151,6 +213,7 @@ public class DataInitializer {
                             .capacity(14)
                             .acquisitionDate("2023-01-10")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(3, 4))
                             .build(),
                     Vehicle.builder()
                             .plate("12JK34")
@@ -160,6 +223,7 @@ public class DataInitializer {
                             .capacity(15)
                             .acquisitionDate("2022-05-08")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(1, 4))
                             .build(),
                     Vehicle.builder()
                             .plate("89PL21")
@@ -169,6 +233,7 @@ public class DataInitializer {
                             .capacity(16)
                             .acquisitionDate("2020-11-19")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(2, 4))
                             .build(),
                     Vehicle.builder()
                             .plate("78QW90")
@@ -178,6 +243,7 @@ public class DataInitializer {
                             .capacity(13)
                             .acquisitionDate("2021-07-15")
                             .status(VehicleStatus.ACTIVE)
+                            .routes(routes.subList(1, 3))
                             .build()
             );
 
@@ -232,61 +298,6 @@ public class DataInitializer {
             );
 
             driverRepository.persist(drivers);
-
-            List<Route> routes = List.of(
-                    Route.builder()
-                            .originStreet("123 Main St")
-                            .originCity("Springfield")
-                            .destinationStreet("456 Elm St")
-                            .destinationCity("Shelbyville")
-                            .distance(50.5)
-                            .estimatedTime("1h 15m")
-                            .tolls(false)
-                            .vehicles(vehicles.subList(0, 2))
-                            .build(),
-                    Route.builder()
-                            .originStreet("789 Oak St")
-                            .originCity("Capital City")
-                            .destinationStreet("321 Maple St")
-                            .destinationCity("Ogdenville")
-                            .distance(120.0)
-                            .estimatedTime("2h 30m")
-                            .tolls(true)
-                            .vehicles(vehicles.subList(2, 4))
-                            .build(),
-                    Route.builder()
-                            .originStreet("555 Birch Ave")
-                            .originCity("North Haverbrook")
-                            .destinationStreet("888 Pine Rd")
-                            .destinationCity("Brockway")
-                            .distance(75.3)
-                            .estimatedTime("1h 45m")
-                            .tolls(true)
-                            .vehicles(vehicles.subList(0, 1))
-                            .build(),
-                    Route.builder()
-                            .originStreet("222 Cedar Blvd")
-                            .originCity("Springfield")
-                            .destinationStreet("999 Willow Ln")
-                            .destinationCity("Ogdenville")
-                            .distance(30.0)
-                            .estimatedTime("0h 50m")
-                            .tolls(false)
-                            .vehicles(vehicles.subList(1, 3))
-                            .build(),
-                    Route.builder()
-                            .originStreet("100 Poplar St")
-                            .originCity("Brockway")
-                            .destinationStreet("400 Ash Dr")
-                            .destinationCity("Capital City")
-                            .distance(200.5)
-                            .estimatedTime("3h 15m")
-                            .tolls(true)
-                            .vehicles(vehicles.subList(3, 5))
-                            .build()
-            );
-
-            routeRepository.persist(routes);
 
             LOGGER.info("Initial data successfully inserted.");
         } else {
