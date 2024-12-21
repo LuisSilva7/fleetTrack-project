@@ -5,4 +5,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class RouteRepository implements PanacheRepository<Route> {
+
+    public Long saveRoute(Route route) {
+        persist(route);
+        return route.getId();
+    }
 }

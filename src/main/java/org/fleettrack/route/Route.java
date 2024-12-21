@@ -27,4 +27,8 @@ public class Route {
 
     @ManyToMany(mappedBy = "routes")
     private List<Vehicle> vehicles;
+
+    public void addVehicle(Vehicle vehicle) {
+        vehicles.add(vehicle);
+    }
 }

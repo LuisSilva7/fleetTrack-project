@@ -69,10 +69,10 @@ public class DriverController {
     @Path("/{id}")
     @Transactional
     public Response updateDriverVehicle(
-            @PathParam("id") Long driverID,
+            @PathParam("id") Long driverId,
             DriverVehicleRequest request
     ) {
-        driverService.updateDriverVehicle(driverID, request);
+        driverService.updateDriverVehicle(driverId, request);
 
         return Response.status(Response.Status.OK).entity(new ApiResponse<>(
                 "Driver vehicle with ID: " + request.vehicleId() + " updated successfully!",

@@ -143,7 +143,7 @@ public class DriverService {
                         "Driver with ID: " + driverId + " does not exist!"));
 
         Optional<Vehicle> vehicle = vehicleRepository.findByIdOptional(request.vehicleId());
-        driver.setVehicle(vehicle.orElse(null));
+        vehicle.ifPresent(driver::setVehicle);
         driverRepository.persist(driver);
     }
 
