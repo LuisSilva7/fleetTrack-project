@@ -8,6 +8,8 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 import org.fleettrack.common.ApiResponse;
 import org.fleettrack.exception.custom.ResourceAlreadyExistsException;
+import org.fleettrack.exception.custom.ResourceNotFoundException;
+import org.fleettrack.exception.custom.VehicleNotActiveException;
 
 import java.util.stream.Collectors;
 
@@ -21,7 +23,21 @@ public class GlobalExceptionHandler implements ExceptionMapper<Throwable> {
     public Response toResponse(Throwable exception) {
         ApiResponse<?> apiResponse = new ApiResponse<>(exception.getMessage(), null);
 
+        if (exception instanceof ResourceNotFoundException) {
+            return Response.status(NOT_FOUND)
+                    .entity(apiResponse)
+                    .type(APPLICATION_JSON)
+                    .build();
+        }
+
         if (exception instanceof ResourceAlreadyExistsException) {
+            return Response.status(CONFLICT)
+                    .entity(apiResponse)
+                    .type(APPLICATION_JSON)
+                    .build();
+        }
+
+        if (exception instanceof VehicleNotActiveException) {
             return Response.status(CONFLICT)
                     .entity(apiResponse)
                     .type(APPLICATION_JSON)

@@ -3,9 +3,9 @@ package org.fleettrack.driver;
 import io.quarkus.panache.common.Page;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.fleettrack.common.PageResponse;
 import org.fleettrack.exception.custom.ResourceAlreadyExistsException;
+import org.fleettrack.exception.custom.ResourceNotFoundException;
 import org.fleettrack.vehicle.*;
 
 import java.time.LocalDate;

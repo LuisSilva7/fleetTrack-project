@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.fleettrack.vehicle.Vehicle;
 
-import java.util.Date;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,7 +16,7 @@ public class Maintenance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String maintenanceType;
-    private Date date;
+    private String date;
     private double cost;
     private String description;
 

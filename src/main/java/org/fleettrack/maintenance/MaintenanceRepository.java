@@ -5,4 +5,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class MaintenanceRepository implements PanacheRepository<Maintenance> {
+
+    public Long saveMaintenance(Maintenance maintenance) {
+        persist(maintenance);
+        return maintenance.getId();
+    }
 }

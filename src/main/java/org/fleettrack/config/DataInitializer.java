@@ -7,6 +7,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.fleettrack.driver.Driver;
 import org.fleettrack.driver.DriverRepository;
+import org.fleettrack.maintenance.Maintenance;
+import org.fleettrack.maintenance.MaintenanceRepository;
 import org.fleettrack.route.Route;
 import org.fleettrack.route.RouteRepository;
 import org.fleettrack.vehicle.Vehicle;
@@ -28,6 +30,8 @@ public class DataInitializer {
     DriverRepository driverRepository;
     @Inject
     RouteRepository routeRepository;
+    @Inject
+    MaintenanceRepository maintenanceRepository;
 
     @Transactional
     public void init(@Observes StartupEvent ev) {
@@ -192,7 +196,7 @@ public class DataInitializer {
                             .currentKm(15000)
                             .capacity(12)
                             .acquisitionDate("2022-08-15")
-                            .status(VehicleStatus.ACTIVE)
+                            .status(VehicleStatus.INACTIVE)
                             .routes(routes.subList(3, 5))
                             .build(),
                     Vehicle.builder()
@@ -202,7 +206,7 @@ public class DataInitializer {
                             .currentKm(20000)
                             .capacity(10)
                             .acquisitionDate("2021-04-22")
-                            .status(VehicleStatus.ACTIVE)
+                            .status(VehicleStatus.INACTIVE)
                             .routes(routes.subList(3, 4))
                             .build(),
                     Vehicle.builder()
@@ -212,7 +216,7 @@ public class DataInitializer {
                             .currentKm(10000)
                             .capacity(14)
                             .acquisitionDate("2023-01-10")
-                            .status(VehicleStatus.ACTIVE)
+                            .status(VehicleStatus.INACTIVE)
                             .routes(routes.subList(3, 4))
                             .build(),
                     Vehicle.builder()
@@ -222,7 +226,7 @@ public class DataInitializer {
                             .currentKm(12000)
                             .capacity(15)
                             .acquisitionDate("2022-05-08")
-                            .status(VehicleStatus.ACTIVE)
+                            .status(VehicleStatus.INACTIVE)
                             .routes(routes.subList(1, 4))
                             .build(),
                     Vehicle.builder()
@@ -232,7 +236,7 @@ public class DataInitializer {
                             .currentKm(25000)
                             .capacity(16)
                             .acquisitionDate("2020-11-19")
-                            .status(VehicleStatus.ACTIVE)
+                            .status(VehicleStatus.INACTIVE)
                             .routes(routes.subList(2, 4))
                             .build(),
                     Vehicle.builder()
@@ -298,6 +302,50 @@ public class DataInitializer {
             );
 
             driverRepository.persist(drivers);
+
+            List<Maintenance> maintenances = List.of(
+                    Maintenance.builder()
+                            .maintenanceType("Oil Change")
+                            .date("2023-12-01")
+                            .cost(150.50)
+                            .description("Oil change and engine inspection")
+                            .vehicle(vehicles.get(10))
+                            .build(),
+
+                    Maintenance.builder()
+                            .maintenanceType("Tire Replacement")
+                            .date("2023-11-20")
+                            .cost(400.00)
+                            .description("Front and rear tire replacement")
+                            .vehicle(vehicles.get(11))
+                            .build(),
+
+                    Maintenance.builder()
+                            .maintenanceType("Alignment and Balancing")
+                            .date("2023-11-25")
+                            .cost(180.00)
+                            .description("Wheel alignment and balancing")
+                            .vehicle(vehicles.get(12))
+                            .build(),
+
+                    Maintenance.builder()
+                            .maintenanceType("Suspension Inspection")
+                            .date("2023-12-10")
+                            .cost(250.00)
+                            .description("Suspension inspection and shock absorber replacement")
+                            .vehicle(vehicles.get(13))
+                            .build(),
+
+                    Maintenance.builder()
+                            .maintenanceType("Brake System Inspection")
+                            .date("2023-12-15")
+                            .cost(300.00)
+                            .description("Brake pads replacement and inspection")
+                            .vehicle(vehicles.get(14))
+                            .build()
+            );
+
+            maintenanceRepository.persist(maintenances);
 
             LOGGER.info("Initial data successfully inserted.");
         } else {
