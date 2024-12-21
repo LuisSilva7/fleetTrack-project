@@ -7,6 +7,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.fleettrack.driver.Driver;
 import org.fleettrack.driver.DriverRepository;
+import org.fleettrack.route.Route;
+import org.fleettrack.route.RouteRepository;
 import org.fleettrack.vehicle.Vehicle;
 import org.fleettrack.vehicle.VehicleRepository;
 import org.fleettrack.vehicle.VehicleStatus;
@@ -24,6 +26,8 @@ public class DataInitializer {
     VehicleRepository vehicleRepository;
     @Inject
     DriverRepository driverRepository;
+    @Inject
+    RouteRepository routeRepository;
 
     @Transactional
     public void init(@Observes StartupEvent ev) {
@@ -228,6 +232,61 @@ public class DataInitializer {
             );
 
             driverRepository.persist(drivers);
+
+            List<Route> routes = List.of(
+                    Route.builder()
+                            .originStreet("123 Main St")
+                            .originCity("Springfield")
+                            .destinationStreet("456 Elm St")
+                            .destinationCity("Shelbyville")
+                            .distance(50.5)
+                            .estimatedTime("1h 15m")
+                            .tolls(false)
+                            .vehicles(vehicles.subList(0, 2))
+                            .build(),
+                    Route.builder()
+                            .originStreet("789 Oak St")
+                            .originCity("Capital City")
+                            .destinationStreet("321 Maple St")
+                            .destinationCity("Ogdenville")
+                            .distance(120.0)
+                            .estimatedTime("2h 30m")
+                            .tolls(true)
+                            .vehicles(vehicles.subList(2, 4))
+                            .build(),
+                    Route.builder()
+                            .originStreet("555 Birch Ave")
+                            .originCity("North Haverbrook")
+                            .destinationStreet("888 Pine Rd")
+                            .destinationCity("Brockway")
+                            .distance(75.3)
+                            .estimatedTime("1h 45m")
+                            .tolls(true)
+                            .vehicles(vehicles.subList(0, 1))
+                            .build(),
+                    Route.builder()
+                            .originStreet("222 Cedar Blvd")
+                            .originCity("Springfield")
+                            .destinationStreet("999 Willow Ln")
+                            .destinationCity("Ogdenville")
+                            .distance(30.0)
+                            .estimatedTime("0h 50m")
+                            .tolls(false)
+                            .vehicles(vehicles.subList(1, 3))
+                            .build(),
+                    Route.builder()
+                            .originStreet("100 Poplar St")
+                            .originCity("Brockway")
+                            .destinationStreet("400 Ash Dr")
+                            .destinationCity("Capital City")
+                            .distance(200.5)
+                            .estimatedTime("3h 15m")
+                            .tolls(true)
+                            .vehicles(vehicles.subList(3, 5))
+                            .build()
+            );
+
+            routeRepository.persist(routes);
 
             LOGGER.info("Initial data successfully inserted.");
         } else {
