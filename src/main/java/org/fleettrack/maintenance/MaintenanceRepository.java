@@ -10,4 +10,10 @@ public class MaintenanceRepository implements PanacheRepository<Maintenance> {
         persist(maintenance);
         return maintenance.getId();
     }
+
+    public double sumMaintenanceCostsByVehicleId(Long vehicleId) {
+        return find("vehicle.id", vehicleId).stream()
+                .mapToDouble(Maintenance::getCost)
+                .sum();
+    }
 }
