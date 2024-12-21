@@ -11,12 +11,15 @@ import org.fleettrack.maintenance.Maintenance;
 import org.fleettrack.maintenance.MaintenanceRepository;
 import org.fleettrack.route.Route;
 import org.fleettrack.route.RouteRepository;
+import org.fleettrack.tracking.Tracking;
+import org.fleettrack.tracking.TrackingRepository;
 import org.fleettrack.vehicle.Vehicle;
 import org.fleettrack.vehicle.VehicleRepository;
 import org.fleettrack.vehicle.VehicleStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @ApplicationScoped
@@ -32,6 +35,8 @@ public class DataInitializer {
     RouteRepository routeRepository;
     @Inject
     MaintenanceRepository maintenanceRepository;
+    @Inject
+    TrackingRepository trackingRepository;
 
     @Transactional
     public void init(@Observes StartupEvent ev) {
@@ -346,6 +351,80 @@ public class DataInitializer {
             );
 
             maintenanceRepository.persist(maintenances);
+
+            List<Tracking> trackings = List.of(
+                    Tracking.builder()
+                            .latitude(40.7128)
+                            .longitude(-74.0060)
+                            .timestamp(LocalDateTime.of(2024, 1, 10, 8, 30))
+                            .vehicle(vehicleRepository.findByPlate("13AS91").get())
+                            .build(),
+
+                    Tracking.builder()
+                            .latitude(40.7157)
+                            .longitude(-74.0150)
+                            .timestamp(LocalDateTime.of(2024, 1, 10, 9, 0))
+                            .vehicle(vehicleRepository.findByPlate("13AS91").get())
+                            .build(),
+
+                    Tracking.builder()
+                            .latitude(37.7749)
+                            .longitude(-122.4194)
+                            .timestamp(LocalDateTime.of(2024, 1, 12, 14, 15))
+                            .vehicle(vehicleRepository.findByPlate("10LM22").get())
+                            .build(),
+
+                    Tracking.builder()
+                            .latitude(34.0522)
+                            .longitude(-118.2437)
+                            .timestamp(LocalDateTime.of(2024, 1, 15, 16, 45))
+                            .vehicle(vehicleRepository.findByPlate("19CC02").get())
+                            .build(),
+
+                    Tracking.builder()
+                            .latitude(41.8781)
+                            .longitude(-87.6298)
+                            .timestamp(LocalDateTime.of(2024, 1, 18, 11, 30))
+                            .vehicle(vehicleRepository.findByPlate("75ZX34").get())
+                            .build(),
+
+                    Tracking.builder()
+                            .latitude(39.7392)
+                            .longitude(-104.9903)
+                            .timestamp(LocalDateTime.of(2024, 1, 20, 10, 15))
+                            .vehicle(vehicleRepository.findByPlate("42KL77").get())
+                            .build(),
+
+                    Tracking.builder()
+                            .latitude(32.7157)
+                            .longitude(-117.1611)
+                            .timestamp(LocalDateTime.of(2024, 1, 22, 18, 45))
+                            .vehicle(vehicleRepository.findByPlate("33AA99").get())
+                            .build(),
+
+                    Tracking.builder()
+                            .latitude(29.7604)
+                            .longitude(-95.3698)
+                            .timestamp(LocalDateTime.of(2024, 1, 25, 14, 0))
+                            .vehicle(vehicleRepository.findByPlate("60PY10").get())
+                            .build(),
+
+                    Tracking.builder()
+                            .latitude(25.7617)
+                            .longitude(-80.1918)
+                            .timestamp(LocalDateTime.of(2024, 1, 28, 17, 30))
+                            .vehicle(vehicleRepository.findByPlate("89TR12").get()) // Mazda3
+                            .build(),
+
+                    Tracking.builder()
+                            .latitude(47.6062)
+                            .longitude(-122.3321)
+                            .timestamp(LocalDateTime.of(2024, 2, 1, 12, 0))
+                            .vehicle(vehicleRepository.findByPlate("51VU88").get()) // Hyundai Elantra
+                            .build()
+            );
+
+            trackingRepository.persist(trackings);
 
             LOGGER.info("Initial data successfully inserted.");
         } else {

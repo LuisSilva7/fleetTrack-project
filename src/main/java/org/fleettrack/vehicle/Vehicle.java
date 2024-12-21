@@ -35,6 +35,9 @@ public class Vehicle {
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Maintenance> maintenances;
 
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Tracking> trackings;
+
     @ManyToMany
     @JoinTable(
             name = "vehicle_route",
@@ -42,12 +45,4 @@ public class Vehicle {
             inverseJoinColumns = @JoinColumn(name = "route_id")
     )
     private List<Route> routes;
-
-    @ManyToMany
-    @JoinTable(
-            name = "vehicle_tracking",
-            joinColumns = @JoinColumn(name = "vehicle_id"),
-            inverseJoinColumns = @JoinColumn(name = "tracking_id")
-    )
-    private List<Tracking> trackings;
 }

@@ -5,7 +5,6 @@ import lombok.*;
 import org.fleettrack.vehicle.Vehicle;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
@@ -20,8 +19,9 @@ public class Tracking {
     private Long id;
     private double latitude;
     private double longitude;
-    private LocalDateTime dateTime;
+    private LocalDateTime timestamp;
 
-    @ManyToMany(mappedBy = "trackings")
-    private List<Vehicle> vehicles;
+    @ManyToOne
+    @JoinColumn(name = "trackings", nullable = false)
+    private Vehicle vehicle;
 }
