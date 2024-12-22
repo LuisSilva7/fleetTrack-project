@@ -1,87 +1,58 @@
-# fleet-track
+# FleetTrack - Vehicle Route, Tracking, and Maintenance Management
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+FleetTrack is designed to streamline the management of vehicle routes, tracking, maintenance, and driver assignments. By providing real-time insights, efficient management tools, and data-driven features, FleetTrack empowers fleet managers to optimize their operations and reduce costs.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+# Why? (Motivation / Problem to Solve)
 
-## Running the application in dev mode
+FleetTrack addresses the complexity of fleet management by offering an integrated solution for route optimization, real-time tracking, and proactive maintenance scheduling. This ensures reduced downtime, improved resource allocation, and better overall fleet performance.
 
-You can run your application in dev mode that enables live coding using:
+## Features
 
-```shell script
-./mvnw quarkus:dev
-```
+- **Real-Time Vehicle Tracking**: Provides live location updates for all vehicles, ensuring managers have complete visibility of their fleet.
+- **Route Optimization**: Facilitates the creation and assignment of efficient routes, saving time and reducing fuel costs.
+- **Driver Management**: Tracks driver assignments, performance, and availability, helping ensure compliance with regulations and schedules.
+- **Maintenance Scheduling**: Automatically tracks vehicle maintenance needs, sending alerts for upcoming or overdue services.
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+## Technologies Used
 
-## Packaging and running the application
+- **Backend**:
+  - **Docker**: A containerization platform used to package and deploy the application in lightweight, isolated environments, ensuring consistency across different environments and simplifying the deployment process.
+  - **Java** - Programming language used for backend development.
+  - **Quarkus**: A Kubernetes-native Java framework optimized for containerized environments, ensuring high performance and low memory footprint.
+  - **RESTEasy**: A JAX-RS implementation for building RESTful APIs with Quarkus.
+  - **Hibernate ORM with Panache**: Simplifies data access and management in Quarkus-based applications.
+  - **MySQL** - Relational database for storing parking, payment, and user data.
 
-The application can be packaged using:
+## How to Run the Project Locally
 
-```shell script
-./mvnw package
-```
+### Installation Steps
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+1. **Clone the repository:**
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+   ```bash
+   git clone https://github.com/LuisSilva7/fleetTrack-project.git
+   ```
 
-If you want to build an _über-jar_, execute the following command:
+2. **Navigate to the project backend directory:**
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+   ```bash
+   cd fleetTrack
+   ```
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+3. **Run all containers:**
 
-## Creating a native executable
+   ```bash
+   docker compose up -d
+   ```
 
-You can create a native executable using:
+4. **Install project dependencies:**
 
-```shell script
-./mvnw package -Dnative
-```
+   ```bash
+   mvn quarkus:dev
+   ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+The application will be available at http://localhost:8888.
 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
+### Maintainer
 
-You can then execute your native executable with: `./target/fleet-track-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Related Guides
-
-- Hibernate ORM ([guide](https://quarkus.io/guides/hibernate-orm)): Define your persistent model with Hibernate ORM and Jakarta Persistence
-- Messaging - Kafka Connector ([guide](https://quarkus.io/guides/kafka-getting-started)): Connect to Kafka with Reactive Messaging
-- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplify your persistence code for Hibernate ORM via the active record or the repository pattern
-- Scheduler ([guide](https://quarkus.io/guides/scheduler)): Schedule jobs and tasks
-- RESTEasy Classic ([guide](https://quarkus.io/guides/resteasy)): REST endpoint framework implementing Jakarta REST and more
-- JDBC Driver - MySQL ([guide](https://quarkus.io/guides/datasource)): Connect to the MySQL database via JDBC
-
-## Provided Code
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-[Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
-
-
-### Messaging codestart
-
-Use Quarkus Messaging
-
-[Related Apache Kafka guide section...](https://quarkus.io/guides/kafka-reactive-getting-started)
-
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+- **Luis Silva** (Owner/Developer)
