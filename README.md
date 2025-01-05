@@ -45,7 +45,7 @@ FleetTrack addresses the complexity of fleet management by offering an integrate
    docker compose up -d
    ```
 
-4. **Install project dependencies:**
+4. **Run backend server:**
 
    ```bash
    mvn quarkus:dev
