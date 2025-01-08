@@ -2,10 +2,6 @@
 
 FleetTrack is designed to streamline the management of vehicle routes, tracking, maintenance, and driver assignments. By providing real-time insights, efficient management tools, and data-driven features, FleetTrack empowers fleet managers to optimize their operations and reduce costs.
 
-# Why? (Motivation / Problem to Solve)
-
-FleetTrack addresses the complexity of fleet management by offering an integrated solution for route optimization, real-time tracking, and proactive maintenance scheduling. This ensures reduced downtime, improved resource allocation, and better overall fleet performance.
-
 ## Features
 
 - **Real-Time Vehicle Tracking**: Provides live location updates for all vehicles, ensuring managers have complete visibility of their fleet.
@@ -16,7 +12,7 @@ FleetTrack addresses the complexity of fleet management by offering an integrate
 ## Technologies Used
 
 - **Backend**:
-  - **Docker**: A containerization platform used to package and deploy the application in lightweight, isolated environments, ensuring consistency across different environments and simplifying the deployment process.
+  - **Docker**: A containerization platform used to package and deploy the application in lightweight, isolated environments, ensuring consistency across different environments.
   - **Java** - Programming language used for backend development.
   - **Quarkus**: A Kubernetes-native Java framework optimized for containerized environments, ensuring high performance and low memory footprint.
   - **RESTEasy**: A JAX-RS implementation for building RESTful APIs with Quarkus.
