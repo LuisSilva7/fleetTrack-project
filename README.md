@@ -49,6 +49,10 @@ FleetTrack is designed to streamline the management of vehicle routes, tracking,
 
 The application will be available at http://localhost:8888.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
 ### Maintainer
 
 - **Luis Silva** (Owner/Developer)
